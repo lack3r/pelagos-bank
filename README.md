@@ -27,6 +27,17 @@ dotnet run --project app/Pelagos.Api --launch-profile https
 
 Either way it runs in the Production environment, exactly as it would in the wild.
 
+## Run the tests
+
+```bash
+dotnet test
+```
+
+`tests/Pelagos.Tests` holds the test harness, a few tests of normal behaviour (health, seed,
+login), and one worked example: the test for the first flaw, which the trainer demonstrates.
+Expect that example to fail until you fix the flaw, and the others to pass. You add a test for
+each flaw you fix, in the same style.
+
 ## Then
 
 Open **HUNT.md** for how the exercise works and the scorecard to fill in.

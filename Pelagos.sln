@@ -5,7 +5,11 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "app", "app", "{F95F473B-E98A-ACD6-1986-755F447BE36F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pelagos.Api", "app\Pelagos.Api\Pelagos.Api.csproj", "{C5E44C8C-21A4-40B2-B048-4823F79F65A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pelagos.Api", "app\Pelagos.Api\Pelagos.Api.csproj", "{60FF17FB-67E3-4B74-9CD6-E78E06F9F7E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0AB3BF05-4346-4AA6-1389-037BE0695223}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pelagos.Tests", "tests\Pelagos.Tests\Pelagos.Tests.csproj", "{30D87A4C-2DF9-443F-87E8-AECE0839CB66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,23 +21,36 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C5E44C8C-21A4-40B2-B048-4823F79F65A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C5E44C8C-21A4-40B2-B048-4823F79F65A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C5E44C8C-21A4-40B2-B048-4823F79F65A6}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{C5E44C8C-21A4-40B2-B048-4823F79F65A6}.Debug|x64.Build.0 = Debug|Any CPU
-		{C5E44C8C-21A4-40B2-B048-4823F79F65A6}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{C5E44C8C-21A4-40B2-B048-4823F79F65A6}.Debug|x86.Build.0 = Debug|Any CPU
-		{C5E44C8C-21A4-40B2-B048-4823F79F65A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C5E44C8C-21A4-40B2-B048-4823F79F65A6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C5E44C8C-21A4-40B2-B048-4823F79F65A6}.Release|x64.ActiveCfg = Release|Any CPU
-		{C5E44C8C-21A4-40B2-B048-4823F79F65A6}.Release|x64.Build.0 = Release|Any CPU
-		{C5E44C8C-21A4-40B2-B048-4823F79F65A6}.Release|x86.ActiveCfg = Release|Any CPU
-		{C5E44C8C-21A4-40B2-B048-4823F79F65A6}.Release|x86.Build.0 = Release|Any CPU
+		{60FF17FB-67E3-4B74-9CD6-E78E06F9F7E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60FF17FB-67E3-4B74-9CD6-E78E06F9F7E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60FF17FB-67E3-4B74-9CD6-E78E06F9F7E4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{60FF17FB-67E3-4B74-9CD6-E78E06F9F7E4}.Debug|x64.Build.0 = Debug|Any CPU
+		{60FF17FB-67E3-4B74-9CD6-E78E06F9F7E4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{60FF17FB-67E3-4B74-9CD6-E78E06F9F7E4}.Debug|x86.Build.0 = Debug|Any CPU
+		{60FF17FB-67E3-4B74-9CD6-E78E06F9F7E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60FF17FB-67E3-4B74-9CD6-E78E06F9F7E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60FF17FB-67E3-4B74-9CD6-E78E06F9F7E4}.Release|x64.ActiveCfg = Release|Any CPU
+		{60FF17FB-67E3-4B74-9CD6-E78E06F9F7E4}.Release|x64.Build.0 = Release|Any CPU
+		{60FF17FB-67E3-4B74-9CD6-E78E06F9F7E4}.Release|x86.ActiveCfg = Release|Any CPU
+		{60FF17FB-67E3-4B74-9CD6-E78E06F9F7E4}.Release|x86.Build.0 = Release|Any CPU
+		{30D87A4C-2DF9-443F-87E8-AECE0839CB66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30D87A4C-2DF9-443F-87E8-AECE0839CB66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30D87A4C-2DF9-443F-87E8-AECE0839CB66}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{30D87A4C-2DF9-443F-87E8-AECE0839CB66}.Debug|x64.Build.0 = Debug|Any CPU
+		{30D87A4C-2DF9-443F-87E8-AECE0839CB66}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{30D87A4C-2DF9-443F-87E8-AECE0839CB66}.Debug|x86.Build.0 = Debug|Any CPU
+		{30D87A4C-2DF9-443F-87E8-AECE0839CB66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30D87A4C-2DF9-443F-87E8-AECE0839CB66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30D87A4C-2DF9-443F-87E8-AECE0839CB66}.Release|x64.ActiveCfg = Release|Any CPU
+		{30D87A4C-2DF9-443F-87E8-AECE0839CB66}.Release|x64.Build.0 = Release|Any CPU
+		{30D87A4C-2DF9-443F-87E8-AECE0839CB66}.Release|x86.ActiveCfg = Release|Any CPU
+		{30D87A4C-2DF9-443F-87E8-AECE0839CB66}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{C5E44C8C-21A4-40B2-B048-4823F79F65A6} = {F95F473B-E98A-ACD6-1986-755F447BE36F}
+		{60FF17FB-67E3-4B74-9CD6-E78E06F9F7E4} = {F95F473B-E98A-ACD6-1986-755F447BE36F}
+		{30D87A4C-2DF9-443F-87E8-AECE0839CB66} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 	EndGlobalSection
 EndGlobal

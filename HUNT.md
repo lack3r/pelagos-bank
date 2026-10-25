@@ -6,7 +6,10 @@ Work in teams. For each flaw you find, go the whole way:
    the `PELAGOS{...}` flag it exposes.
 2. **Explain it** — what the flaw is, why it works, what an attacker gets.
 3. **Fix it** — change the code so the hole is closed.
-4. **Prove it** — add a test that fails against the old code and passes against your fix.
+4. **Prove it** — write a test in `tests/Pelagos.Tests` that fails against the old code and
+   passes against your fix. The harness and a worked example (the F1a test) are already there;
+   run `dotnet test` from the repo root. After each hunt the trainer hands out that flaw's
+   reference test, so if yours is not coming together you can run that one red, then green.
 
 A captured flag is worth points. A fix with a test that proves it is worth more —
 that is the part that matters. Finding the flag is the easy half.
@@ -21,8 +24,8 @@ getting unstuck is the point.
 
 ## Scorecard
 
-| # | Found (`PELAGOS{...}`) | Fixed + test |
-|---|------------------------|--------------|
+| # | Found (the `PELAGOS{...}` flag, or the proof) | Fixed + test |
+|---|-----------------------------------------------|--------------|
 | Flag 1  |  |  |
 | Flag 2  |  |  |
 | Flag 3  |  |  |
