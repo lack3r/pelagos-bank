@@ -1,30 +1,15 @@
-# build + tooling
-_build/.venv/
-_build/__pycache__/
-_build/_cache/
-_build/_preview/
-.pytest_cache/
-.DS_Store
-*.pyc
-
 # .NET
 bin/
 obj/
+*.user
+
+# local database, created on first run
 *.db
 *.db-shm
 *.db-wal
 *.db-journal
 
-# generated participant export tree
-_export/
-
-# generated seminar decks (built from _source/ by _build/build.sh)
-/Slides/
-/Trainer/
-/Resources/
-
-# Breach-story clips are fetched locally, never committed (see assets/video/SOURCES.md)
-assets/video/*.mp4
-assets/video/*.m4a
-assets/video/*-raw.*
-assets/video/*.webm
+# OS / editor
+.DS_Store
+.vs/
+.idea/
