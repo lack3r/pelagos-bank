@@ -1,6 +1,19 @@
+# build + tooling
+_build/.venv/
+_build/__pycache__/
+_build/_cache/
+_build/_preview/
+.pytest_cache/
+.DS_Store
+*.pyc
+
+# .NET
 bin/
 obj/
-*.user
-.vs/
-.DS_Store
 *.db
+*.db-shm
+*.db-wal
+*.db-journal
+
+# generated participant export tree
+_export/
