@@ -17,3 +17,14 @@ obj/
 
 # generated participant export tree
 _export/
+
+# generated seminar decks (built from _source/ by _build/build.sh)
+/Slides/
+/Trainer/
+/Resources/
+
+# Breach-story clips are fetched locally, never committed (see assets/video/SOURCES.md)
+assets/video/*.mp4
+assets/video/*.m4a
+assets/video/*-raw.*
+assets/video/*.webm

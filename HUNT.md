@@ -13,6 +13,12 @@ that is the part that matters. Finding the flag is the easy half.
 
 There are twelve flags to find.
 
+## When you are stuck
+
+Open the matching file in `hints/` and read one tier at a time: a nudge, then the
+technique, then a near-spoiler. Using a hint does not cost your fix-and-test score;
+getting unstuck is the point.
+
 ## Scorecard
 
 | # | Found (`PELAGOS{...}`) | Fixed + test |
