@@ -14,7 +14,9 @@ Work in teams. For each flaw you find, go the whole way:
 A captured flag is worth points. A fix with a test that proves it is worth more —
 that is the part that matters. Finding the flag is the easy half.
 
-There are twelve flags to find.
+There are twelve flags to find. Nine are core. Three are bonus flags, and the trainer names
+them at the start of their block: capture them like any other, but fix them only once the core
+flag of that block is fixed and proven. The bonus fix still scores if you get there.
 
 ## When you are stuck
 
