@@ -1,6 +1,7 @@
 # The hunt
 
-Work in teams. For each flaw you find, go the whole way:
+Work in teams. The least experienced person on the team types the test while a teammate
+dictates; swap for the fix. For each flaw you find, go the whole way:
 
 1. **Hack it** — show the flaw working against your own local instance and capture
    the `PELAGOS{...}` flag it exposes.
@@ -10,6 +11,7 @@ Work in teams. For each flaw you find, go the whole way:
    passes against your fix. The harness and a worked example (the F1a test) are already there;
    run `dotnet test` from the repo root. After each hunt the trainer hands out that flaw's
    reference test, so if yours is not coming together you can run that one red, then green.
+   Never written a test? Start with `hints/writing-a-test.md`: every test here has the same shape.
 
 A captured flag is worth points. A fix with a test that proves it is worth more —
 that is the part that matters. Finding the flag is the easy half.

@@ -17,3 +17,4 @@ write the test that proves it.
 | the continue / redirect endpoint | continue-redirect.md |
 | downloading a statement | statement-download.md |
 | transferring money | transfers.md |
+| writing the test itself, if you never have | writing-a-test.md |

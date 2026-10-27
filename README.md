@@ -36,7 +36,8 @@ dotnet test
 `tests/Pelagos.Tests` holds the test harness, a few tests of normal behaviour (health, seed,
 login), and one worked example: the test for the first flaw, which the trainer demonstrates.
 Expect that example to fail until you fix the flaw, and the others to pass. You add a test for
-each flaw you fix, in the same style.
+each flaw you fix, in the same style. Never written a test? `hints/writing-a-test.md` has the one
+shape you need.
 
 ## Then
 
