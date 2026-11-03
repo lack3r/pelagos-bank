@@ -39,6 +39,15 @@ Expect that example to fail until you fix the flaw, and the others to pass. You 
 each flaw you fix, in the same style. Never written a test? `hints/writing-a-test.md` has the one
 shape you need.
 
+## What else is here
+
+- `pipeline/`: the security pipeline you run on day two (`pipeline\run.cmd` on Windows,
+  `./pipeline/run.sh` on macOS or Linux), and the same stages as a GitHub Actions template.
+- `api/pelagos.http`: ready-made requests for Visual Studio, Rider or VS Code (REST Client).
+  The same requests work in Postman, signed out, no account needed.
+- `handouts/`: the code review checklist, the review samples, the developer security
+  checklist and the incident response plan template.
+
 ## Then
 
 Open **HUNT.md** for how the exercise works and the scorecard to fill in.

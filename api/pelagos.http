@@ -1,0 +1,23 @@
+# Pelagos Bank API: the requests the portal makes, for Visual Studio, Rider or VS Code (REST Client).
+# The same requests work in Postman (signed out): copy the method, URL, headers and body.
+# Start the lab first: dotnet run (from app/Pelagos.Api), then click "Send request" above each block.
+
+@host = http://localhost:15080
+
+### Is the lab up?
+GET {{host}}/health
+
+### Log in as a seeded customer (every seeded customer has PIN 0000)
+# @name login
+POST {{host}}/api/auth/login
+Content-Type: application/json
+
+{ "username": "customer001@pelagos.example", "password": "0000" }
+
+### Your own account (customer 1 owns account 1), using the token from the login above
+GET {{host}}/api/accounts/1
+Authorization: Bearer {{login.response.body.$.token}}
+
+### Find a customer by name
+GET {{host}}/api/customers/search?name=Customer%20002
+Authorization: Bearer {{login.response.body.$.token}}

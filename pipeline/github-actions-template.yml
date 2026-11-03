@@ -1,0 +1,35 @@
+# The same five gates as pipeline/run.sh, as a GitHub Actions workflow.
+# Not active here: to use it in your own repo, copy it to .github/workflows/security.yml
+# and fill in the TODOs. Each step fails the build, so a red gate blocks the merge.
+name: security-pipeline
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0          # full history, so the secret scan sees every commit
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+      - name: Restore
+        run: dotnet restore Pelagos.sln
+      - name: Build
+        run: dotnet build Pelagos.sln --no-restore
+      - name: Tests
+        run: dotnet test Pelagos.sln --no-build
+      - name: Dependency audit
+        run: |
+          out="$(dotnet list app/Pelagos.Api/Pelagos.Api.csproj package --vulnerable --include-transitive)"
+          echo "$out"
+          if echo "$out" | grep -qi "has the following vulnerable packages"; then exit 1; fi
+      - name: Secret scan
+        # TODO: pick a scanner (for example gitleaks) and make a finding fail the job
+        run: echo "TODO secret scan"
+      # TODO: static analysis (SAST), for example CodeQL or Semgrep, on every pull request
+      # TODO: a DAST baseline scan against a test deployment before release
