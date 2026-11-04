@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace Pelagos.Api.Data;
 
 public class Customer
@@ -5,7 +7,7 @@ public class Customer
     public int Id { get; set; }
     public string FullName { get; set; } = "";
     public string Email { get; set; } = "";
-    public string Pin { get; set; } = "0000";
+    [JsonIgnore] public string Pin { get; set; } = "0000";   // never returned by the API
 }
 
 public class Account

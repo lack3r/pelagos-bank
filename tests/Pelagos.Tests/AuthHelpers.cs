@@ -2,7 +2,7 @@ using System.Net.Http.Json;
 
 namespace Pelagos.Tests;
 
-public static class AuthHelpers
+public static partial class AuthHelpers
 {
     public static async Task<string> LoginAsync(HttpClient client, string username, string password)
     {

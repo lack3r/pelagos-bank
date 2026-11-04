@@ -69,6 +69,7 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.MapGet("/health", () => Results.Ok(new { status = "ok" }));
+app.MapGet("/", () => Results.Ok(new { service = "Pelagos Bank API", health = "/health" }));
 
 app.MapGet("/api/reports/{id:int}", (int id, PelagosDbContext db, IConfiguration config) =>
 {
@@ -78,6 +79,8 @@ app.MapGet("/api/reports/{id:int}", (int id, PelagosDbContext db, IConfiguration
     var report = db.CreditReports.Find(id);
     return report is null ? Results.NotFound() : Results.Ok(report);
 });
+
+var failedLogins = new System.Collections.Concurrent.ConcurrentDictionary<string, (DateTime Start, int Count)>();
 
 app.MapPost("/api/auth/login", (LoginRequest req, PelagosDbContext db, IConfiguration config) =>
 {
@@ -94,8 +97,15 @@ app.MapPost("/api/auth/login", (LoginRequest req, PelagosDbContext db, IConfigur
     {
         var customer = db.Customers.FirstOrDefault(c => c.Email == req.Username);
         if (customer is null || customer.Pin != req.Password)
-            return Results.Json(new { error = "invalid", hint = "PELAGOS{login_brute_force_unthrottled}" },
-                statusCode: StatusCodes.Status401Unauthorized);
+        {
+            var now = DateTime.UtcNow;
+            var failed = failedLogins.AddOrUpdate(req.Username ?? "", _ => (now, 1),
+                (_, f) => now - f.Start > TimeSpan.FromMinutes(1) ? (now, 1) : (f.Start, f.Count + 1));
+            return failed.Count >= 15
+                ? Results.Json(new { error = "invalid", hint = "PELAGOS{login_brute_force_unthrottled}" },
+                    statusCode: StatusCodes.Status401Unauthorized)
+                : Results.Unauthorized();
+        }
         role = "customer";
         subject = customer.Id.ToString();
     }
@@ -128,7 +138,7 @@ app.MapGet("/api/accounts/{id:int}", (int id, PelagosDbContext db, ClaimsPrincip
 app.MapGet("/api/customers/search", (string name, PelagosDbContext db) =>
 {
     var matches = db.Customers
-        .FromSqlRaw("SELECT * FROM Customers WHERE FullName LIKE '%" + name + "%'")
+        .FromSqlRaw("SELECT * FROM Customers WHERE FullName LIKE '%" + name + "%' AND Id < 900")
         .ToList();
     return Results.Ok(matches);
 }).RequireAuthorization();
@@ -159,13 +169,17 @@ app.MapGet("/api/statements", (string name, IWebHostEnvironment env) =>
 
 app.MapPost("/api/transfers", (Transfer req, PelagosDbContext db, IConfiguration config, ClaimsPrincipal user) =>
 {
+    var callerId = user.FindFirstValue(ClaimTypes.NameIdentifier);
     var from = db.Accounts.Find(req.FromAccountId);
     if (from is null) return Results.NotFound();
+    var flaggedForReview = callerId != from.CustomerId.ToString() || req.Amount <= 0 || req.Amount > from.Balance;
 
     from.Balance -= req.Amount;
     db.Transfers.Add(new Transfer { FromAccountId = req.FromAccountId, ToAccountId = req.ToAccountId, Amount = req.Amount });
     db.SaveChanges();
-    return Results.Ok(new { ok = true, note = config["Flags:Transfer"] });
+    return flaggedForReview
+        ? Results.Ok(new { ok = true, note = config["Flags:Transfer"] })
+        : Results.Ok(new { ok = true });
 }).RequireAuthorization();
 
 app.MapGet("/api/continue", (string returnUrl) =>
