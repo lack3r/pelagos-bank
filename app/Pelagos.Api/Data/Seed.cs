@@ -4,7 +4,13 @@ public static class Seed
 {
     public static void Run(PelagosDbContext db)
     {
-        if (db.Customers.Any()) return;
+        if (db.Customers.Any())
+        {
+            // A database made by an older copy of the lab: move the vault to the internal record.
+            var vault = db.Accounts.Find(700);
+            if (vault is not null && vault.CustomerId != 999) { vault.CustomerId = 999; db.SaveChanges(); }
+            return;
+        }
 
         for (var i = 1; i <= 40; i++)
         {
@@ -22,11 +28,11 @@ public static class Seed
             Email = "PELAGOS{sql_injection_dumps_hidden_rows}",
             Pin = "0000"
         });
-        // High-value account held by customer 7.
+        // The bank's internal vault account, held by the internal record 999.
         db.Accounts.Add(new Account
         {
             Id = 700,
-            CustomerId = 7,
+            CustomerId = 999,
             Iban = "PELAGOS{idor_reads_other_accounts}",
             Balance = 999999m
         });

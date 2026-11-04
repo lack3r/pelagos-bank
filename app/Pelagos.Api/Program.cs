@@ -96,7 +96,7 @@ app.MapPost("/api/auth/login", (LoginRequest req, PelagosDbContext db, IConfigur
     else
     {
         var customer = db.Customers.FirstOrDefault(c => c.Email == req.Username);
-        if (customer is null || customer.Pin != req.Password)
+        if (customer is null || customer.Id >= 900 || customer.Pin != req.Password)   // internal records never log in
         {
             var now = DateTime.UtcNow;
             var failed = failedLogins.AddOrUpdate(req.Username ?? "", _ => (now, 1),
